@@ -13,8 +13,8 @@ export const Wrapper = styled.div`
 
     .input-wrapper {
       position: relative;
-      margin-bottom: ${theme.spacings.medium};w
-    width: 100%;
+      margin-bottom: ${theme.spacings.medium};
+      width: 100%;
     }
   `}
 `;
@@ -46,4 +46,8 @@ export const Search = styled.input`
       width: 630px;
     }
   `}
+`;
+
+export const EmptyList = styled.strong`
+  width: 100%;
 `;
