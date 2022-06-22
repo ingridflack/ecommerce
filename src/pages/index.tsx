@@ -1,8 +1,9 @@
 import Head from "next/head";
 import { IProductItem } from "../interfaces";
+import { getProducts } from "../services";
 import { MainContainer } from "../styles/shared";
-import ListPage from "../views/listpage";
-import FAKE_PRODUCTS_LIST from "../views/listpage/fakeProducts.json";
+import ProductList from "../views/ProductList";
+import FAKE_PRODUCTS_LIST from "../views/ProductList/fakeProducts.json";
 
 interface HomeProps {
   data: IProductItem[];
@@ -18,16 +19,25 @@ const Home = ({ data }: HomeProps) => {
       </Head>
 
       <MainContainer>
-        <ListPage data={data} />
+        <ProductList data={data} />
       </MainContainer>
     </div>
   );
 };
 
 export async function getServerSideProps() {
-  return {
-    props: { data: FAKE_PRODUCTS_LIST },
-  };
+  try {
+    const { data } = await getProducts();
+
+    return {
+      props: { data },
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      props: {},
+    };
+  }
 }
 
 export default Home;

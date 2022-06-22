@@ -1,6 +1,10 @@
 export interface IProductItem {
   id: string;
-  qty_stock: number;
+  quantity: number;
   name: string;
   price: number;
+}
+
+export interface IProductStock {
+  qty_stock: number;
 }
