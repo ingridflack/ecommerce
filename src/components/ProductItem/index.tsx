@@ -1,17 +1,23 @@
-import Image from "next/image";
-
 import { IProductItem } from "../../interfaces";
 import { formatPrice } from "../../utils";
 import { FiShoppingCart } from "react-icons/fi";
 
 import * as S from "./styles";
+import { useCart } from "../../hooks/useCart";
 
 interface ProductItemProps {
   product: IProductItem;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
+  const { addProduct, cart } = useCart();
   const { name, price, id } = product;
+
+  const quantity = cart?.find((product) => product.id === id)?.quantity || 0;
+
+  const handleAddProduct = (product: IProductItem) => {
+    addProduct(product);
+  };
 
   return (
     <S.Wrapper>
@@ -20,14 +26,14 @@ const ProductItem = ({ product }: ProductItemProps) => {
         <p className="product-price">{formatPrice(price)}</p>
       </S.Product>
 
-      <S.ButtonWrapper>
-        <S.Button type="button">
+      <div>
+        <S.Button type="button" onClick={() => handleAddProduct(product)}>
           <div className="quantity-wrapper">
-            <FiShoppingCart />3
+            <FiShoppingCart /> {quantity ?? "-"}
           </div>
           <span>ADICIONAR AO CARRINHO</span>
         </S.Button>
-      </S.ButtonWrapper>
+      </div>
     </S.Wrapper>
   );
 };

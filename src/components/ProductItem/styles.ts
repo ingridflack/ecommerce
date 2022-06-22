@@ -12,8 +12,6 @@ export const Wrapper = styled.div`
   `}
 `;
 
-export const ButtonWrapper = styled.div``;
-
 export const Product = styled.div`
   ${({ theme }) => css`
     .product-name {
