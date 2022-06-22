@@ -1,26 +1,39 @@
 import Link from "next/link";
 import { MdShoppingBasket } from "react-icons/md";
 
-// import logo from "../../../public/assets/logo.svg";
+import Image from "next/image";
 
 import * as S from "./styles";
+import { useCart } from "../../hooks/useCart";
 
 const Header = () => {
+  const { cart } = useCart();
+  const cartSize = cart.length;
+
+  const renderCartSize = () => (
+    <span data-testid="cart-size">
+      {cartSize ?? "-"} {cartSize === 1 ? "item" : "itens"}
+    </span>
+  );
+
   return (
     <S.Container>
       <Link href="/" passHref>
-        {/* <img src={logo} alt="Logotipo da Shopper" /> */}
-        LOGO
+        <a>
+          <Image
+            src="/assets/logo.svg"
+            alt="Logotipo da Shopper"
+            height={41}
+            width={156}
+          />
+        </a>
       </Link>
 
-      <Link href="/cart" passHref>
+      <Link href="/cart">
         <S.Cart>
           <div>
             <strong>Meu carrinho</strong>
-            <span data-testid="cart-size">
-              {/* {cartSize === 1 ? `${cartSize} item` : `${cartSize} itens`} */}
-              2 itens
-            </span>
+            {renderCartSize()}
           </div>
           <MdShoppingBasket size={36} />
         </S.Cart>
