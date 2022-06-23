@@ -18,13 +18,14 @@ Ecommerce is a project that allows you to view a list of products and place an o
 ### Installation
 
 1. Clone the backend repository [here](https://github.com/ingridflack/ecommerce-backend) and follow the instructions
-2. Clone the repository
+2. Wait for this message: "App is running on https://localhost:3333"
+3. Clone the repository
    ```sh
    git clone https://github.com/ingridflack/ecommerce
    ```
-3. Install the dependencies with `yarn` or `npm install`
-4. Run `yarn dev` to start the dev server
-5. Open https://localhost:3000
+4. Install the dependencies with `yarn` or `npm install`
+5. Run `yarn dev` to start the dev server
+6. Open https://localhost:3000
 
 ## Features
 
